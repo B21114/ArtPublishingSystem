@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBaseSubsystem", "DataBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.DBS.Domain", "DataBaseSubsystem\APS.DBS.Domain\APS.DBS.Domain.csproj", "{717054C8-9BCA-4EB4-A488-7C7BB81989C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.CMS.Infrastructure", "DataBaseSubsystem\APS.CMS.Infrastructure\APS.CMS.Infrastructure.csproj", "{ADF465A8-8633-450A-999E-840003BE6DD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.DBS.Infrastructure", "DataBaseSubsystem\APS.CMS.Infrastructure\APS.DBS.Infrastructure.csproj", "{ADF465A8-8633-450A-999E-840003BE6DD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
