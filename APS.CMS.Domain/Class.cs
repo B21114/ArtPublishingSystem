@@ -2,7 +2,7 @@
 
 namespace APS.CMS.Domain
 {
-    public class Class1
+    public class Class
     {
     }
 }
