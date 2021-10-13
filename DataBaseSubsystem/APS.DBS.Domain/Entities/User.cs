@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APS.DBS.Domain
+namespace APS.DBS.Domain.Entities
 {
     /// <summary>
     /// В сущность пользователя добавлена сущность "Личность".
     /// </summary>
-    class User :Person
+    class User : Person
     {
     }
 }

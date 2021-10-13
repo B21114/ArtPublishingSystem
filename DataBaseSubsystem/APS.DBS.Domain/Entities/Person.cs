@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APS.DBS.Domain
+namespace APS.DBS.Domain.Entities
 {
     /// <summary>
     /// Сущность "Личность".
@@ -12,28 +12,28 @@ namespace APS.DBS.Domain
     class Person
     {
         /// <summary>
-        /// Идентификатор пользователя
+        /// Идентификатор пользователя.
         /// </summary>
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
-        /// Имя пользователя
+        /// Имя пользователя.
         /// </summary>
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Отчество пользователя
+        /// Отчество пользователя.
         /// </summary>
         public string Patronymic { get; set; }
 
         /// <summary>
-        /// Фамилия пользователя
+        /// Фамилия пользователя.
         /// </summary>
-        public string Surname { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
-        /// Дата рождения пользователя
+        /// Дата рождения пользователя.
         /// </summary>
-        public DateTime Date { get; set; }
+        public DateTime ByrthDate { get; set; }
     }
 }
