@@ -9,7 +9,7 @@ namespace APS.DBS.Domain.Entities
     /// <summary>
     /// В сущность пользователя добавлена сущность "Личность".
     /// </summary>
-    class User : Person
+    public class User : Person
     {
     }
 }

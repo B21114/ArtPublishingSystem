@@ -9,7 +9,7 @@ namespace APS.DBS.Domain.Entities
     /// <summary>
     /// Сущность файл.
     /// </summary>
-    class File
+    public class File
     {
         /// <summary>
         /// Идентификатор файла.

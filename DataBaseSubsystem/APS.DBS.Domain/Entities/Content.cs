@@ -9,7 +9,7 @@ namespace APS.DBS.Domain.Entities
     /// <summary>
     /// Сущность контент.
     /// </summary>
-    class Content
+    public class Content
     {
         /// <summary>
         /// Идентификатор контента.

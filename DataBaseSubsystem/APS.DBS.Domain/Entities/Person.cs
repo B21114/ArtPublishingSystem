@@ -9,7 +9,7 @@ namespace APS.DBS.Domain.Entities
     /// <summary>
     /// Сущность "Личность".
     /// </summary>
-    class Person
+    public class Person
     {
         /// <summary>
         /// Идентификатор пользователя.
