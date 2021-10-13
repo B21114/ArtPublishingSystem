@@ -1,13 +1,13 @@
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using APS.Web.MVC.Models;
+using Microsoft.AspNetCore.Identity;
+using APS.Web.MVC.DataBaseContext;
 
 namespace APS.Web.MVC
 {
@@ -24,6 +24,13 @@ namespace APS.Web.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            // Сервис временной базы данных в памяти компьютера.
+            services.AddDbContext<AplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
+
+            // Сервис для начальной установки конфигурации.
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AplicationContext>();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +51,7 @@ namespace APS.Web.MVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
