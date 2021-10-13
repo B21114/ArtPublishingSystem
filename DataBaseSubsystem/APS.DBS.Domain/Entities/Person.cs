@@ -34,6 +34,6 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Дата рождения пользователя.
         /// </summary>
-        public DateTime ВirthDate { get; set; }
+        public DateTime Вirthdate { get; set; }
     }
 }
