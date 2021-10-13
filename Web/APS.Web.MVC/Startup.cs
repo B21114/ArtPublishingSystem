@@ -1,13 +1,12 @@
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using APS.Web.MVC.Models;
 using Microsoft.AspNetCore.Identity;
 using APS.Web.MVC.DataBaseContext;
+using APS.Dbs.Domain.Entities.Identity;
 
 namespace APS.Web.MVC
 {
