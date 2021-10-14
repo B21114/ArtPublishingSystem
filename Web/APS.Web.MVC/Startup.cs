@@ -26,6 +26,17 @@ namespace APS.Web.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // добавляем контекст ContentContex в качестве сервиса в приложение
+            services.AddDbContext<ContentDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+
+            // добавляем контекст PersonContex в качестве сервиса в приложение
+            services.AddDbContext<PersonDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+
+            // Сервис временной базы данных в памяти компьютера.
+            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
+ 
+            // Сервис для начальной установки конфигурации.
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
            
             // получаем строку подключения из файла конфигурации
             string connection = Configuration.GetConnectionString("DefaultConnection");
@@ -36,22 +47,13 @@ namespace APS.Web.MVC
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            // добавляем контекст ContentContex в качестве сервиса в приложение
-            services.AddDbContext<ContentDbContext>(options =>
-                options.UseInMemoryDatabase(connection));
-            services.AddControllersWithViews();
-
-            // Сервис временной базы данных в памяти компьютера.
-            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
-
-            // Сервис для начальной установки конфигурации.
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков
+            services.AddMediatR(assemblies);
 
             // Добавляются все сервисы MVC
             services.AddMvc();
 
-            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков
-            services.AddMediatR(assemblies);
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
