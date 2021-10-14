@@ -27,32 +27,30 @@ namespace APS.Web.MVC
         public void ConfigureServices(IServiceCollection services)
         {
            
-            // получаем строку подключения из файла конфигурации
+            // РїРѕР»СѓС‡Р°РµРј СЃС‚СЂРѕРєСѓ РїРѕРґРєР»СЋС‡РµРЅРёСЏ РёР· С„Р°Р№Р»Р° РєРѕРЅС„РёРіСѓСЂР°С†РёРё
             string connection = Configuration.GetConnectionString("DefaultConnection");
-           
-            // добавляем контекст ContentContex в качестве сервиса в приложение
-            services.AddDbContext<ContentDbContext>(options =>
-                options.UseInMemoryDatabase(connection));
-            services.AddControllersWithViews();
 
-            // Сервис временной базы данных в памяти компьютера.
-            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
-
-            // Сервис для начальной установки конфигурации.
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
-        
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AplicationContext>();
-
-            // Добавляются все сервисы MVC
-            services.AddMvc();
-
-            //Получение типа 
+            //РџРѕР»СѓС‡РµРЅРёРµ С‚РёРїР° 
             var assemblies = new Assembly[]
             {
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков
+            // РґРѕР±Р°РІР»СЏРµРј РєРѕРЅС‚РµРєСЃС‚ ContentContex РІ РєР°С‡РµСЃС‚РІРµ СЃРµСЂРІРёСЃР° РІ РїСЂРёР»РѕР¶РµРЅРёРµ
+            services.AddDbContext<ContentDbContext>(options =>
+                options.UseInMemoryDatabase(connection));
+            services.AddControllersWithViews();
+
+            // РЎРµСЂРІРёСЃ РІСЂРµРјРµРЅРЅРѕР№ Р±Р°Р·С‹ РґР°РЅРЅС‹С… РІ РїР°РјСЏС‚Рё РєРѕРјРїСЊСЋС‚РµСЂР°.
+            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
+
+            // РЎРµСЂРІРёСЃ РґР»СЏ РЅР°С‡Р°Р»СЊРЅРѕР№ СѓСЃС‚Р°РЅРѕРІРєРё РєРѕРЅС„РёРіСѓСЂР°С†РёРё.
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+
+            // Р”РѕР±Р°РІР»СЏСЋС‚СЃСЏ РІСЃРµ СЃРµСЂРІРёСЃС‹ MVC
+            services.AddMvc();
+
+            //РЎРµСЂРІРёСЃ СЃРєР°РЅРёСЂСѓРµС‚ СЃР±РѕСЂРєРё Рё РґРѕР±Р°РІР»СЏРµС‚ РІ РєРѕРЅС‚РµР№РЅРµСЂ СЂРµР°Р»РёР·Р°С†РёРё РѕР±СЂР°Р±РѕС‚С‡РёРєРѕРІ
             services.AddMediatR(assemblies);
         }
 
