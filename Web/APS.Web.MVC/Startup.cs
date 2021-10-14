@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using APS.Web.MVC.DataBaseContext;
 using APS.Dbs.Domain.Entities.Identity;
+using System.Reflection;
+using MediatR;
 
 namespace APS.Web.MVC
 {
@@ -23,13 +25,24 @@ namespace APS.Web.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+
             // Сервис временной базы данных в памяти компьютера.
             services.AddDbContext<AplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
 
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AplicationContext>();
-        
+
+            // Добавляются все сервисы MVC
+            services.AddMvc();
+
+            //Получение типа 
+            var assemblies = new Assembly[]
+            {
+                typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
+            };
+
+            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков
+            services.AddMediatR(assemblies);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
