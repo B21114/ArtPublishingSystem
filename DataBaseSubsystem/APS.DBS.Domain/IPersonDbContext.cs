@@ -16,6 +16,6 @@ namespace APS.DBS.Domain
         /// <summary>
         /// Содержимое таблицы личности.
         /// </summary>
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Person> People { get; set; }
     }
 }

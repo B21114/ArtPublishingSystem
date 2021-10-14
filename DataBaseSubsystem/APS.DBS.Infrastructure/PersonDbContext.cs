@@ -15,7 +15,7 @@ namespace APS.DBS.Infrastructure
     public class PersonDbContext : DbContext, IPersonDbContext
     {
         /// <inheritdoc>
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Person> People { get; set; }
 
         public PersonDbContext(DbContextOptions<PersonDbContext> options) : base(options)
         {
