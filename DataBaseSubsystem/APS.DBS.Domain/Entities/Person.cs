@@ -19,7 +19,7 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Имя пользователя.
         /// </summary>
-        public string FirstName { get; set; }
+        public string Firstname { get; set; }
 
         /// <summary>
         /// Отчество пользователя.
@@ -29,11 +29,11 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Фамилия пользователя.
         /// </summary>
-        public string LastName { get; set; }
+        public string Lastname { get; set; }
 
         /// <summary>
         /// Дата рождения пользователя.
         /// </summary>
-        public DateTime ByrthDate { get; set; }
+        public DateTime ВirthDate { get; set; }
     }
 }
