@@ -24,26 +24,21 @@ namespace APS.Web.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
-            // получаем строку подключения из файла конфигурации
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-           
-            // добавляем контекст ContentContex в качестве сервиса в приложение
-            services.AddDbContext<ContentDbContext>(options =>
-                options.UseInMemoryDatabase(connection));
 
-            // добавляем контекст PersonContex в качестве сервиса в приложение
-            services.AddDbContext<PersonDbContext>(options =>
-                options.UseInMemoryDatabase(connection));
+            // РґРѕР±Р°РІР»СЏРµРј РєРѕРЅС‚РµРєСЃС‚ ContentContex РІ РєР°С‡РµСЃС‚РІРµ СЃРµСЂРІРёСЃР° РІ РїСЂРёР»РѕР¶РµРЅРёРµ
+            services.AddDbContext<ContentDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+
+            // РґРѕР±Р°РІР»СЏРµРј РєРѕРЅС‚РµРєСЃС‚ PersonContex РІ РєР°С‡РµСЃС‚РІРµ СЃРµСЂРІРёСЃР° РІ РїСЂРёР»РѕР¶РµРЅРёРµ
+            services.AddDbContext<PersonDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+
+            // РЎРµСЂРІРёСЃ РІСЂРµРјРµРЅРЅРѕР№ Р±Р°Р·С‹ РґР°РЅРЅС‹С… РІ РїР°РјСЏС‚Рё РєРѕРјРїСЊСЋС‚РµСЂР°.
+            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
+ 
+            // РЎРµСЂРІРёСЃ РґР»СЏ РЅР°С‡Р°Р»СЊРЅРѕР№ СѓСЃС‚Р°РЅРѕРІРєРё РєРѕРЅС„РёРіСѓСЂР°С†РёРё.
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+
             services.AddControllersWithViews();
 
-            
-            // Сервис временной базы данных в памяти компьютера.
-            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
-
-            // Сервис для начальной установки конфигурации.
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
-        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
