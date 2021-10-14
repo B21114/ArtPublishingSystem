@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using APS.Web.MVC.DataBaseContext;
 using APS.Dbs.Domain.Entities.Identity;
@@ -25,18 +24,20 @@ namespace APS.Web.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             // получаем строку подключения из файла конфигурации
             string connection = Configuration.GetConnectionString("DefaultConnection");
+           
             // добавляем контекст ContentContex в качестве сервиса в приложение
             services.AddDbContext<ContentDbContext>(options =>
-                options.UseSqlServer(connection));
+                options.UseInMemoryDatabase(connection));
             services.AddControllersWithViews();
             
             // Сервис временной базы данных в памяти компьютера.
-            services.AddDbContext<AplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
+            services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
 
             // Сервис для начальной установки конфигурации.
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AplicationContext>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
         
         }
 

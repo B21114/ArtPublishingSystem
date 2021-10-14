@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APS.Web.MVC.DataBaseContext
 {
-    public class AplicationContext : IdentityDbContext<User>
+    public class ApplicationContext : IdentityDbContext<User>
     {
-        public AplicationContext(DbContextOptions options): base(options)
+        public ApplicationContext(DbContextOptions options): base(options)
         {
             
         }
