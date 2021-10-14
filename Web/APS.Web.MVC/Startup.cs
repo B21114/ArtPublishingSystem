@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using APS.Web.MVC.DataBaseContext;
 using APS.Dbs.Domain.Entities.Identity;
+using System.Reflection;
+using MediatR;
 
 namespace APS.Web.MVC
 {
@@ -24,7 +26,6 @@ namespace APS.Web.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             // добавляем контекст ContentContex в качестве сервиса в приложение
             services.AddDbContext<ContentDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
 
@@ -36,9 +37,23 @@ namespace APS.Web.MVC
  
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+           
+            // получаем строку подключения из файла конфигурации
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+
+            //Получение типа 
+            var assemblies = new Assembly[]
+            {
+                typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
+            };
+
+            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков
+            services.AddMediatR(assemblies);
+
+            // Добавляются все сервисы MVC
+            services.AddMvc();
 
             services.AddControllersWithViews();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
