@@ -14,7 +14,7 @@ namespace APS.DBS.Infrastructure
     public class ContentDbContext : DbContext
     {
         public DbSet<Content> Contents { get; set; }
-        public ContentDbContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public ContentDbContext(DbContextOptions<ContentDbContext> options) : base(options)
         {
 
         }
