@@ -31,7 +31,12 @@ namespace APS.Web.MVC
             // добавляем контекст ContentContex в качестве сервиса в приложение
             services.AddDbContext<ContentDbContext>(options =>
                 options.UseInMemoryDatabase(connection));
+
+            // добавляем контекст PersonContex в качестве сервиса в приложение
+            services.AddDbContext<PersonDbContext>(options =>
+                options.UseInMemoryDatabase(connection));
             services.AddControllersWithViews();
+
             
             // Сервис временной базы данных в памяти компьютера.
             services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
