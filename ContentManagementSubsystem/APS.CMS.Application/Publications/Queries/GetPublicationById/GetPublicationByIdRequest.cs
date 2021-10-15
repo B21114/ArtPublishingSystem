@@ -12,6 +12,6 @@ namespace APS.CMS.Application.Publications.Queries.GetPublicationById
     /// </summary>
     public class GetPublicationByIdRequest: IRequest<GetPublicationByIdResponse>
     {
-       
+        public Guid Id { get; set; } = default;
     }
 }

@@ -15,10 +15,16 @@ namespace APS.CMS.Application.Publications.Mappings
         public PublicationProfile()
         {
             CreateMap<Content, PublicationDetailsDto>()
-                .ForMember(o => o.Id, o2 => o2.MapFrom(o3 => o3.Id))
-                .ForMember(o => o.AuthorFullName, o2 => o2.MapFrom(o3 => o3.Author))
-                .ForMember(o => o.Uploaddatetime, o2 => o2.MapFrom(o3 => o3.Uploaddatetime))
-                .ForMember(o => o.Ispublic, o2 => o2.MapFrom(o3 => o3.Ispublic));
+                .ForMember(dto => dto.Id, o2 => o2.MapFrom(o3 => o3.Id))
+                .ForMember(
+                    destinationMember: dto => dto.AuthorFullName, 
+                    memberOptions: o2 => o2.MapFrom(o3 => string.Join(
+                        " ", 
+                        o3.Author.Lastname, 
+                        o3.Author.Firstname, 
+                        o3.Author.Patronymic)))
+                .ForMember(dto => dto.UploadDateTime, o2 => o2.MapFrom(o3 => o3.UploadDateTime))
+                .ForMember(dto => dto.IsPublic, o2 => o2.MapFrom(o3 => o3.IsPublic));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace APS.CMS.Application.Publications.Queries.GetPublicationById
     public class PublicationDetailsDto
     {
         /// <summary>
-        /// Идентификатор контента Dto.
+        /// Идентификатор контента.
         /// </summary>
         public Guid Id { get; set; }
 
@@ -23,13 +23,13 @@ namespace APS.CMS.Application.Publications.Queries.GetPublicationById
         public string AuthorFullName { get; set; }
 
         /// <summary>
-        /// Дата загрузки файла Dto.
+        /// Дата загрузки файла.
         /// </summary>
-        public DateTime UpLoadDatetime { get; set; }
+        public DateTime UploadDateTime { get; set; }
 
         /// <summary>
-        /// Признак публичной доступности файла Dto.
+        /// Признак публичной доступности файла.
         /// </summary>
-        public bool Ispublic { get; set; }
+        public bool IsPublic { get; set; }
     }
 }

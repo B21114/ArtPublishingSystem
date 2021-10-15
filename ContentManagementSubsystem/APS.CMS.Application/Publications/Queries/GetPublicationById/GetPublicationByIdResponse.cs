@@ -11,6 +11,6 @@ namespace APS.CMS.Application.Publications.Queries.GetPublicationById
     /// </summary>
     public class GetPublicationByIdResponse
     {
-        public Guid Id { get; set; }
+        public PublicationDetailsDto Result { get; set; }
     }
 }
