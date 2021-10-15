@@ -12,6 +12,7 @@ using APS.Dbs.Domain.Entities.Identity;
 using System.Reflection;
 using MediatR;
 using APS.DBS.Domain;
+using AutoMapper;
 
 namespace APS.Web.MVC
 {
@@ -38,6 +39,9 @@ namespace APS.Web.MVC
  
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+
+            //Сервис представляющий заголовки содержимого и тело сущности HTTP
+            services.AddHttpContextAccessor();
            
             // Получаем строку подключения из файла конфигурации.
             string connection = Configuration.GetConnectionString("DefaultConnection");
@@ -48,7 +52,10 @@ namespace APS.Web.MVC
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            // Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
+            //Сервис позволяющий проецировать одну модель на другую
+            services.AddAutoMapper(assemblies);
+
+            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
 
             // Добавляются все сервисы MVC.
