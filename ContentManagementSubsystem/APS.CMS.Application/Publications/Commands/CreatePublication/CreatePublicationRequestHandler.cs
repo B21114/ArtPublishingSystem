@@ -52,8 +52,8 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
             var content = new Content
             {
                 Id = Guid.NewGuid(),
-                Ispublic = request.IsPublic,
-                Uploaddatetime = DateTime.Now
+                IsPublic = request.IsPublic,
+                UploadDateTime = DateTime.Now
             };
 
             //Начинает отслеживание сущности контент.
