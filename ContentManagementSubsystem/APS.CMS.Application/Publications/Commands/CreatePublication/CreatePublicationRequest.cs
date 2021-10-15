@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace APS.CMS.Application.Publications.Commands.CreatePublication
 {
@@ -15,7 +16,7 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
         /// <summary>
         /// Загружаемый файл.
         /// </summary>
-        public byte[] UploadFile { get; set; }
+        public IFormFile UploadFile { get; set; }
 
         /// <summary>
         /// Признак публичной доступности файла.

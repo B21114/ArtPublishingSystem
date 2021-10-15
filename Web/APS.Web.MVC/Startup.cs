@@ -11,6 +11,7 @@ using APS.Web.MVC.DataBaseContext;
 using APS.Dbs.Domain.Entities.Identity;
 using System.Reflection;
 using MediatR;
+using APS.DBS.Domain;
 
 namespace APS.Web.MVC
 {
@@ -26,11 +27,11 @@ namespace APS.Web.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // добавляем контекст ContentContex в качестве сервиса в приложение
-            services.AddDbContext<ContentDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+            // Добавляем контекст ContentContex в качестве сервиса в приложение.
+            services.AddDbContext<IContentDbContext, ContentDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
 
-            // добавляем контекст PersonContex в качестве сервиса в приложение
-            services.AddDbContext<PersonDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+            // Добавляем контекст PersonContex в качестве сервиса в приложение.
+            services.AddDbContext<IPersonDbContext, PersonDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
 
             // Сервис временной базы данных в памяти компьютера.
             services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
@@ -38,19 +39,19 @@ namespace APS.Web.MVC
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
            
-            // получаем строку подключения из файла конфигурации
+            // Получаем строку подключения из файла конфигурации.
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            //Получение типа 
+            //Получение типов.
             var assemblies = new Assembly[]
             {
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков
+            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
 
-            // Добавляются все сервисы MVC
+            // Добавляются все сервисы MVC.
             services.AddMvc();
 
             services.AddControllersWithViews();
