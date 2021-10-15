@@ -12,6 +12,7 @@ using APS.Dbs.Domain.Entities.Identity;
 using System.Reflection;
 using MediatR;
 using APS.DBS.Domain;
+using AutoMapper;
 
 namespace APS.Web.MVC
 {
@@ -50,6 +51,9 @@ namespace APS.Web.MVC
             {
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
+
+            //Сервис позволяющий проецировать одну модель на другую
+            services.AddAutoMapper(assemblies);
 
             //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
