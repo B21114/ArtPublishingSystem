@@ -25,7 +25,7 @@ namespace APS.CMS.Application.Publications.Queries.GetPublicationById
         /// <summary>
         /// Дата загрузки файла Dto.
         /// </summary>
-        public DateTime Uploaddatetime { get; set; }
+        public DateTime UpLoadDatetime { get; set; }
 
         /// <summary>
         /// Признак публичной доступности файла Dto.
