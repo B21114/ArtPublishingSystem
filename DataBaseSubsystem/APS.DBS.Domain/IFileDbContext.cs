@@ -9,15 +9,13 @@ using System.Threading.Tasks;
 namespace APS.DBS.Domain
 {
     /// <summary>
-    /// Интерфейс контекста базы данных контента.
+    /// Интерфейс контекста базы данных файлов.
     /// </summary>
-    public interface IContentDbContext
+    public interface IFileDbContext
     {
-
         /// <summary>
-        /// Содержимое таблицы контент.
+        /// Содержимое таблицы файлов.
         /// </summary>
-        public DbSet<Content> Contents { get; set; }
-
+        public DbSet<File> Files { get; set; }
     }
 }
