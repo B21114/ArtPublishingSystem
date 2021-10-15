@@ -42,13 +42,13 @@ namespace APS.Web.MVC
             // Получаем строку подключения из файла конфигурации.
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            //Получение типов.
+            // Получение типов.
             var assemblies = new Assembly[]
             {
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
+            // Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
 
             // Добавляются все сервисы MVC.
