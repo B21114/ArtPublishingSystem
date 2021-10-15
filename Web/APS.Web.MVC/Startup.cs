@@ -40,7 +40,7 @@ namespace APS.Web.MVC
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
 
-            //Сервис представляющий заголовки содержимого и тело сущности HTTP
+            // Сервис представляющий заголовки содержимого и тело сущности HTTP.
             services.AddHttpContextAccessor();
            
             // Получаем строку подключения из файла конфигурации.
@@ -52,10 +52,10 @@ namespace APS.Web.MVC
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            //Сервис позволяющий проецировать одну модель на другую
+            // Сервис позволяющий проецировать одну модель на другую.
             services.AddAutoMapper(assemblies);
 
-            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
+            // Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
 
             // Добавляются все сервисы MVC.
