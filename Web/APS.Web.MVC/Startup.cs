@@ -38,6 +38,9 @@ namespace APS.Web.MVC
  
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+
+            //Сервис представляющий заголовки содержимого и тело сущности HTTP
+            services.AddHttpContextAccessor();
            
             // Получаем строку подключения из файла конфигурации.
             string connection = Configuration.GetConnectionString("DefaultConnection");
