@@ -56,13 +56,13 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
                 UploadDateTime = DateTime.Now
             };
 
-            //Начинает отслеживание сущности контент.
+            // Начинает отслеживание сущности контент.
             await _contentDbContext.Contents.AddAsync(content);
 
-            //Асинхронно сохраняет все изменения, внесенные в этом контексте, в основную базу данных.
+            // Асинхронно сохраняет все изменения, внесенные в этом контексте, в основную базу данных.
             await _contentDbContext.SaveChangesAsync();
 
-            //Возвращает экземпляр класса CreatePublicationResponse с Id новой записи.
+            // Возвращает экземпляр класса CreatePublicationResponse с Id новой записи.
             return new CreatePublicationResponse
             {
                 IdRecord = content.Id

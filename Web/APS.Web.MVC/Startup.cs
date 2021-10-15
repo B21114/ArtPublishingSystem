@@ -34,28 +34,31 @@ namespace APS.Web.MVC
             // Добавляем контекст PersonContex в качестве сервиса в приложение.
             services.AddDbContext<IPersonDbContext, PersonDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
 
+            // Добавляем контекст FileContext в качестве сервиса в приложение.
+            services.AddDbContext<IFileDbContext, FileDbContext>(options => options.UseInMemoryDatabase("MyDataBase"));
+
             // Сервис временной базы данных в памяти компьютера.
             services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
- 
+
             // Сервис для начальной установки конфигурации.
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
 
-            //Сервис представляющий заголовки содержимого и тело сущности HTTP
+            // Сервис представляющий заголовки содержимого и тело сущности HTTP.
             services.AddHttpContextAccessor();
-           
+
             // Получаем строку подключения из файла конфигурации.
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            //Получение типов.
+            // Получение типов.
             var assemblies = new Assembly[]
             {
                 typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
             };
 
-            //Сервис позволяющий проецировать одну модель на другую
+            // Сервис позволяющий проецировать одну модель на другую.
             services.AddAutoMapper(assemblies);
 
-            //Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
+            // Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
 
             // Добавляются все сервисы MVC.
