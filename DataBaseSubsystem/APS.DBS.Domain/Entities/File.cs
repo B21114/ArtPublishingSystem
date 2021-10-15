@@ -19,26 +19,26 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Имя файла.
         /// </summary>
-        public string Filename { get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
         /// Расширение файла.
         /// </summary>
-        public string Fileextension { get; set; }
+        public string FileExtension { get; set; }
 
         /// <summary>
         /// Размер файла.
         /// </summary>
-        public long Filesize { get; set; }
+        public long FileSize { get; set; }
 
         /// <summary>
         /// Содержимое файла.
         /// </summary>
-        public byte[] Filecontent { get; set; }
+        public byte[] FileContent { get; set; }
 
         /// <summary>
         /// Тип содержимого файла.
         /// </summary>
-        public string Filetype { get; set; }
+        public string FileType { get; set; }
     }
 }

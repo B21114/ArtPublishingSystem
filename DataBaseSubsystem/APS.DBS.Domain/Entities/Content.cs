@@ -24,12 +24,12 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Дата загрузки файла.
         /// </summary>
-        public DateTime Uploaddatetime { get; set; }
+        public DateTime UploadDateTime { get; set; }
 
         /// <summary>
         /// Признак публичной доступности файла.
         /// </summary>
-        public bool Ispublic { get; set; }
+        public bool IsPublic { get; set; }
 
     }
 }
