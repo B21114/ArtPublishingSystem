@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APS.DBS.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,25 @@ namespace APS.CMS.Application.Publications.Queries.GetPublicationById
     /// DTO для сущности контент
     /// </summary>
     public class PublicationDetailsDto
-    { 
+    {
+        /// <summary>
+        /// Идентификатор контента Dto.
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// ФИО автора Dto.
+        /// </summary>
+        public string AuthorFullName { get; set; }
+
+        /// <summary>
+        /// Дата загрузки файла Dto.
+        /// </summary>
+        public DateTime Uploaddatetime { get; set; }
+
+        /// <summary>
+        /// Признак публичной доступности файла Dto.
+        /// </summary>
+        public bool Ispublic { get; set; }
     }
 }
