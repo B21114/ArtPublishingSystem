@@ -10,9 +10,26 @@ namespace APS.Web.MVC.DataBaseContext
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
-        public ApplicationContext(DbContextOptions options): base(options)
+        /// <summary>
+        /// Коллекция пользователей.
+        /// </summary>
+        public override DbSet<User> Users { get; set; }
+
+        public ApplicationContext(DbContextOptions options) : base(options)
         {
-            
+        }
+       
+        /// <summary>
+        /// Метод для настройки моделей.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            string admin = "Admin";
+
+            string moderator = "Moderator";
+
+            string user = "User";
         }
     }
 }
