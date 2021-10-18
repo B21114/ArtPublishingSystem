@@ -27,11 +27,26 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
         /// <summary>
         /// Подтверждение пароля.
         /// </summary>
-        public string PasswordConfirmed { get; set; }
+        public string ConfirmedPassword { get; set; }
 
         /// <summary>
-        /// Данные о пользователе.
+        /// Имя пользователя.
         /// </summary>
-        public Person Person { get; set; }
+        public string Firstname { get; set; }
+
+        /// <summary>
+        /// Отчество пользователя.
+        /// </summary>
+        public string Patronymic { get; set; }
+
+        /// <summary>
+        /// Фамилия пользователя.
+        /// </summary>
+        public string Lastname { get; set; }
+
+        /// <summary>
+        /// Дата рождения пользователя.
+        /// </summary>
+        public DateTime ВirthDate { get; set; }
     }
 }

@@ -9,21 +9,11 @@ namespace APS.Dbs.Domain.Entities.Identity
     /// <summary>
     /// Модель пользователя.
     /// </summary>
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
         /// <summary>
         /// Личные данные.
         /// </summary>
         public Person Person { get; set; }
-
-        /// <summary>
-        ///Id роли пользователя 
-        /// </summary>
-        public Guid? RoleId { get; set; }
-
-        /// <summary>
-        /// Роль пользователя
-        /// </summary>
-        public Role Role { get; set; } 
     }
 }

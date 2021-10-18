@@ -1,4 +1,5 @@
 ﻿using APS.Dbs.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,8 @@ namespace APS.DBS.Domain.Entities.Identity
     /// <summary>
     /// Ролевая модель
     /// </summary>
-    public class Role
+    public class Role: IdentityRole<Guid>
     {
-        /// <summary>
-        /// Id роли
-        /// </summary>
-        public Guid Id { get; set; }
-
         /// <summary>
         /// Название роли пользователя
         /// </summary>

@@ -12,7 +12,7 @@ namespace APS.DBS.Domain
     public interface IUserDbContext
     {
         /// <summary>
-        /// 
+        ///  Коллекция пользователей.
         /// </summary>
         public DbSet<User> Users { get; set; }
 

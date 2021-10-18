@@ -15,14 +15,12 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
         public RegistrationUserValidator()
         {
             RuleFor(rules => rules.Email).NotEmpty();
-            RuleFor(rules => rules.Email).NotEmpty();
             RuleFor(rules => rules.Password).NotEmpty();
-            RuleFor(rules => rules.PasswordConfirmed).NotEmpty();
-            RuleFor(rules => rules.Person).NotEmpty();
+            RuleFor(rules => rules.ConfirmedPassword).NotEmpty();
+            RuleFor(rules => rules.Firstname).NotEmpty();
+            RuleFor(rules => rules.Patronymic).NotEmpty();
+            RuleFor(rules => rules.Lastname).NotEmpty();
+            RuleFor(rules => rules.ВirthDate).NotEmpty();
         }
-
-        RegistrationUserRequest userRequest = new RegistrationUserRequest();
-
-        RegistrationUserValidator validations = new RegistrationUserValidator();
     }
 }

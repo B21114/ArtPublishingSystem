@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace APS.CMS.Application.Publications.Queries.RegistrationUser
 {
@@ -17,14 +18,17 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
     public class RegistrationUserRequestHandler : IRequestHandler<RegistrationUserRequest, RegistrationUserResponse>
     {
         private readonly ApplicationContext _applicationContext;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signManager;
 
         /// <summary>
         /// Конструктор обработчика запросов, на регистрацию нового пользователя.
         /// </summary>
         /// <param name="applicationContext">Контекст базы данных.</param>
-        public RegistrationUserRequestHandler(ApplicationContext applicationContext)
+        public RegistrationUserRequestHandler(ApplicationContext applicationContext, UserManager<User> userManager)
         {
             _applicationContext = applicationContext;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -36,15 +40,21 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
         /// <returns></returns>
         public async Task<RegistrationUserResponse> Handle(RegistrationUserRequest request, CancellationToken cancellationToken)
         {
-            var registrationNewUser = new Person()
+            var person = new Person()
             {
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                Firstname = request.Firstname,
+                Patronymic = request.Patronymic,
+                Lastname = request.Lastname,
+                ВirthDate = request.ВirthDate
             };
-            var user = new User
+            User user = new User()
             {
-                Person = registrationNewUser
+                Person = person,
+                Email = request.Email,
             };
-
+            await _userManager.CreateAsync(user, request.Password);
+            
             //Добавление нового пользователя в базу данных.
             await _applicationContext.Users.AddAsync(user);
 
@@ -54,7 +64,7 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
             //Возвращает экземпляр класса RegistrationUserResponse с Id новой записи о пользователе.
             return new RegistrationUserResponse
             {
-                IdNewUser = registrationNewUser.Id
+                IdUser = user.Id
             };
         }
     }

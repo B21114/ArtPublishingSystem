@@ -14,6 +14,6 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
         /// <summary>
         /// Хранит ID нового пользователя.
         /// </summary>
-        public Guid IdNewUser { get; set; }
+        public Guid IdUser { get; set; }
     }
 }
