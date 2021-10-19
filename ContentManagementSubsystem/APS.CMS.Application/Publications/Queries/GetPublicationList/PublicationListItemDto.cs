@@ -1,16 +1,15 @@
-﻿using APS.DBS.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APS.CMS.Application.Publications.Queries.GetPublicationById
+namespace APS.CMS.Application.Publications.Queries.GetPublicationList
 {
     /// <summary>
-    /// DTO для сущности контент.
+    /// DTO для сущности списка контента.
     /// </summary>
-    public class PublicationDetailsDto
+    public class PublicationListItemDto
     {
         /// <summary>
         /// Идентификатор контента.

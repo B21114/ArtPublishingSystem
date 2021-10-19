@@ -17,6 +17,11 @@ namespace APS.DBS.Domain.Entities
         public Guid Id { get; set; }
 
         /// <summary>
+        /// Наименование контента.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Aвтор.
         /// </summary>
         public Person Author { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace APS.CMS.Application.Publications.Queries.GetPublicationById
 {
     /// <summary>
-    /// Данные запроса на получения ответа от публикации по Id
+    /// Данные запроса на получения ответа от публикации по Id.
     /// </summary>
     public class GetPublicationByIdResponse
     {
