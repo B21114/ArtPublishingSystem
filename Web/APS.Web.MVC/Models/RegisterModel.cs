@@ -1,4 +1,5 @@
 ﻿
+using APS.DBS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,7 +20,6 @@ namespace APS.Web.MVC.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-
         /// <summary>
         /// Пароль пользователя.
         /// </summary>
@@ -36,5 +36,11 @@ namespace APS.Web.MVC.Models
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
+
+        [Display(Name ="Данные о новом пользователе")]
+        /// <summary>
+        /// Данные о пользователе.
+        /// </summary>
+        public Person Person { get; set; }
     }
 }
