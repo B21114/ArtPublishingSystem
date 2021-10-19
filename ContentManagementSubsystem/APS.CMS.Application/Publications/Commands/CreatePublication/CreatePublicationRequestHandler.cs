@@ -67,7 +67,6 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
             {
                 IdRecord = content.Id
             };
-
         }
     }
 }

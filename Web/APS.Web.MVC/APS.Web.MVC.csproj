@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\DataBaseSubsystem\APS.DBS.Infrastructure\APS.DBS.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Publications\" />
+  </ItemGroup>
+
 </Project>

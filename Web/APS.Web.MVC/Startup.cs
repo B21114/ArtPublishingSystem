@@ -61,6 +61,9 @@ namespace APS.Web.MVC
             // Сервис сканирует сборки и добавляет в контейнер реализации обработчиков.
             services.AddMediatR(assemblies);
 
+            // Сервис 
+            services.AddTransient<IFileDbContext, FileDbContext>();
+
             // Добавляются все сервисы MVC.
             services.AddMvc();
 
