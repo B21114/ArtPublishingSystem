@@ -36,5 +36,9 @@ namespace APS.DBS.Domain.Entities
         /// </summary>
         public bool IsPublic { get; set; }
 
+        /// <summary>
+        /// Файл.
+        /// </summary>
+        public File File { get; set; }
     }
 }

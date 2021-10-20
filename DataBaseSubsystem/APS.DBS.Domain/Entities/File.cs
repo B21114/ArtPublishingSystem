@@ -40,5 +40,10 @@ namespace APS.DBS.Domain.Entities
         /// Тип содержимого файла.
         /// </summary>
         public string FileType { get; set; }
+
+        /// <summary>
+        /// Данные контента
+        /// </summary>
+        public Content Content { get; set; }
     }
 }

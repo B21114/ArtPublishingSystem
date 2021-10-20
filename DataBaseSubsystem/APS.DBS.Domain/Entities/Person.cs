@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APS.Dbs.Domain.Entities.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,5 +36,15 @@ namespace APS.DBS.Domain.Entities
         /// Дата рождения пользователя.
         /// </summary>
         public DateTime ВirthDate { get; set; }
+
+        /// <summary>
+        /// Данные о пользователе
+        /// </summary>
+        public User User { get; set; }
+
+        /// <summary>
+        /// Список контента пользователя
+        /// </summary>
+        public List<Content> ContentList {get;set;}
     }
 }
