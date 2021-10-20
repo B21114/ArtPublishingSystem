@@ -18,6 +18,30 @@
         <span asp-validation-for="PasswordConfirm"></span>
     </div>
     <div>
+        <label asp-for="Person.Firstname">Имя</label><br />
+        <input asp-for="Person.Firstname" />
+        <span asp-validation-for="Person.Firstname"></span>
+    </div>
+
+    <div>
+        <label asp-for="Person.Patronymic">Отчество</label><br />
+        <input asp-for="Person.Patronymic" />
+        <span asp-validation-for="Person.Patronymic"></span>
+    </div>
+
+    <div>
+        <label asp-for="Person.Lastname">Фамилия</label><br />
+        <input asp-for="Person.Lastname" />
+        <span asp-validation-for="Person.Lastname"></span>
+    </div>
+
+    <div>
+        <label asp-for="Person.ВirthDate">Дата рождения</label><br />
+        <input asp-for="Person.ВirthDate" />
+        <span asp-validation-for="Person.ВirthDate"></span>
+    </div>
+
+    <div>
         <input type="submit" value="Регистрация" />
     </div>
 </form>

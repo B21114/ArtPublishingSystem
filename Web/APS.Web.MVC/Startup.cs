@@ -46,6 +46,9 @@ namespace APS.Web.MVC
             // Сервис представляющий заголовки содержимого и тело сущности HTTP.
             services.AddHttpContextAccessor();
 
+            // Сервис помогающий реализовать паттер Mediator(Посредник).
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
             // Получаем строку подключения из файла конфигурации.
             string connection = Configuration.GetConnectionString("DefaultConnection");
 

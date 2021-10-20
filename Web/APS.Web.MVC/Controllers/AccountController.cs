@@ -1,60 +1,46 @@
-﻿using APS.Web.MVC.Models;
+﻿using APS.CMS.Application.Publications.Queries.RegistrationUser;
+using APS.Web.MVC.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace APS.Web.MVC.Controllers
 {
     public class AccountController : Controller
     {
-       /* private readonly UserManager<User> _userManager;
+        private readonly IMediator _mediator;
+        private readonly ILogger<AccountController> _logger;
 
-        private readonly SignInManager<User> _signInManager;
-
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(IMediator mediator)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        /// <summary>
-        /// Переход для пользователя на страницу регистрациии
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }*/
+         /// <summary>
+         /// Переход для пользователя на страницу регистрациии
+         /// </summary>
+         /// <returns></returns>
+         [HttpGet]
+         public IActionResult Register()
+         {
+             return View();
+         }
 
         /// <summary>
-        /// Метод для регистрации нового пользователя.
+        ///  Метод для регистрации нового пользователя.
         /// </summary>
-        /// <param name="model">Пользователь</param>
+        /// <param name="registrationUserRequest"> Запроса на регистрацию пользователя.</param>
+        /// <param name="cancellationToken">Объект для наблюдения за ожиданием завершения задачи.</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Registration(RegisterModel model)
-        {/*
-            if (modelstate.isvalid)
-            {
-                user user = new user { email = model.email, password = model.password };
-
-                var result = await _usermanager.createasync(user, model.password);
-                if (result.succeeded)
-                {
-                    await _signinmanager.signinasync(user, false);
-                    return redirecttoaction("index","home");
-                }
-                else
-                {
-                    foreach(var error in result.errors)
-                    {
-                        modelstate.addmodelerror(string.empty, error.description);
-                    }
-                }
-            }
-            return view(model);*/
-            throw new NotImplementedException();
+        [Route("Register")]
+        public async Task<IActionResult> Registration([FromBody] RegistrationUserRequest registrationUserRequest, CancellationToken cancellationToken)
+        {
+            var response = await _mediator.Send(registrationUserRequest, cancellationToken);
+            return Ok(response);
         }
 
         [HttpGet]
@@ -94,8 +80,8 @@ namespace APS.Web.MVC.Controllers
             }
             return View(loginModel);*/
             throw new NotImplementedException();
-        } 
-        
+        }
+
 
         /// <summary>
         /// Метод для выхода из аккаунта.
