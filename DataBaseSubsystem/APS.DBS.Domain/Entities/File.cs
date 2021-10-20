@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Данные контента
         /// </summary>
+        [ForeignKey("ContentId")]
         public Content Content { get; set; }
     }
 }

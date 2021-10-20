@@ -3,6 +3,7 @@ using APS.DBS.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,7 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
         /// <summary>
         /// Дата рождения пользователя.
         /// </summary>
+        [DataType(DataType.Date)]
         public DateTime ВirthDate { get; set; }
     }
 }

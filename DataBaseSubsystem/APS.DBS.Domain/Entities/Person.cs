@@ -1,6 +1,8 @@
 ﻿using APS.Dbs.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +37,8 @@ namespace APS.DBS.Domain.Entities
         /// <summary>
         /// Дата рождения пользователя.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime ВirthDate { get; set; }
 
         /// <summary>
