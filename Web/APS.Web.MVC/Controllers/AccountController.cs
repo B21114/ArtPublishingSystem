@@ -19,15 +19,15 @@ namespace APS.Web.MVC.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-         /// <summary>
-         /// Переход для пользователя на страницу регистрациии
-         /// </summary>
-         /// <returns></returns>
-         [HttpGet]
-         public IActionResult Register()
-         {
-             return View();
-         }
+        /// <summary>
+        /// Переход для пользователя на страницу регистрациии
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
 
         /// <summary>
         ///  Метод для регистрации нового пользователя.
@@ -36,11 +36,10 @@ namespace APS.Web.MVC.Controllers
         /// <param name="cancellationToken">Объект для наблюдения за ожиданием завершения задачи.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Register")]
-        public async Task<IActionResult> Registration([FromBody] RegistrationUserRequest registrationUserRequest, CancellationToken cancellationToken)
+        public async Task<IActionResult> Register(RegistrationUserRequest registrationUserRequest, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(registrationUserRequest, cancellationToken);
-            return Ok(response);
+            return View("LogIn");
         }
 
         [HttpGet]

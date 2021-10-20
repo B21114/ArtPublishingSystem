@@ -35,12 +35,30 @@ namespace APS.Web.MVC.Models
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
-        public string PasswordConfirm { get; set; }
+        public string ConfirmedPassword { get; set; }
 
-        [Display(Name ="Данные о новом пользователе")]
         /// <summary>
-        /// Данные о пользователе.
+        /// Имя пользователя.
         /// </summary>
-        public Person Person { get; set; }
+        public string Firstname { get; set; }
+
+        /// <summary>
+        /// Отчество пользователя.
+        /// </summary>
+        public string Patronymic { get; set; }
+
+        /// <summary>
+        /// Фамилия пользователя.
+        /// </summary>
+        public string Lastname { get; set; }
+
+        /// <summary>
+        /// Дата рождения пользователя.
+        /// </summary>
+        /// 
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime ВirthDate { get; set; }
+
     }
 }

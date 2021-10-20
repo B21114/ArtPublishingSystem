@@ -29,20 +29,22 @@ namespace APS.Web.MVC.DataBaseContext
         public DbSet<File> Files { get; set; }
 
         /// <summary>
-        /// Коллекция пользователей.
+        ///  Коллекция пользователей.
         /// </summary>
         public override DbSet<User> Users { get; set; }
 
         public ApplicationContext(DbContextOptions options) : base(options)
         {
         }
-       
+
         /// <summary>
-        /// Метод для настройки моделей.
+        ///  Метод для настройки моделей.
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasKey(u => u.Id);
             modelBuilder.Entity<User>()
                 .HasOne(o => o.Person)
                 .WithOne();
