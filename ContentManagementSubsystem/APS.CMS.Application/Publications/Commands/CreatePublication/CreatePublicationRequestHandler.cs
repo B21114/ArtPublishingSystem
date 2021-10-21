@@ -1,10 +1,12 @@
 ﻿using APS.DBS.Domain;
 using APS.DBS.Domain.Entities;
+using APS.Web.MVC.DataBaseContext;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
     public class CreatePublicationRequestHandler
 : IRequestHandler<CreatePublicationRequest, CreatePublicationResponse>
     {
+        private readonly ApplicationContext _applicationContext;
         private readonly IContentDbContext _contentDbContext;
         private readonly IPersonDbContext _personDbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -28,11 +31,12 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
         /// <param name="personDbContext">Контекст базы данных личности.</param>
         /// <param name="httpContextAccessor">Предоставляет доступ к текущему пользователю, если он доступен..</param>
         public CreatePublicationRequestHandler(
+            ApplicationContext applicationContext,
             IContentDbContext contentDbContext,
             IPersonDbContext personDbContext,
             IHttpContextAccessor httpContextAccessor)
         {
-
+            _applicationContext = applicationContext;
             _personDbContext = personDbContext;
             _contentDbContext = contentDbContext;
             _httpContextAccessor = httpContextAccessor;
@@ -42,18 +46,26 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
         /// Поток обрабатывает запрос, отвечает значением типа CreatePublicationResponse,
         /// запрашивает тип CreatePublicationRequest.
         /// </summary>
-        /// <param name="request">Запрос, публичный ли файл.</param>
+        /// <param name="request">Переменная для обращения к CreatePublicationRequest</param>
         /// <param name="cancellationToken">Объект для наблюдения за ожиданием завершения задачи.</param>
         /// <returns></returns>
         public async Task<CreatePublicationResponse> Handle(
            CreatePublicationRequest request,
            CancellationToken cancellationToken)
         {
+            var user = await _applicationContext.Users
+                .FindAsync(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
+
+            var person = new Person { Id = user.PersonId };
+
             var content = new Content
             {
                 Id = Guid.NewGuid(),
+                Name = request.FileName,
+                Author = person,
                 IsPublic = request.IsPublic,
-                UploadDateTime = DateTime.Now
+                UploadDateTime = DateTime.Now,
+                File = (File)request.UploadFile
             };
 
             // Начинает отслеживание сущности контент.

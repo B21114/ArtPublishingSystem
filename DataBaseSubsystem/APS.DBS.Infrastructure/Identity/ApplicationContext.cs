@@ -33,6 +33,10 @@ namespace APS.Web.MVC.DataBaseContext
         /// </summary>
         public override DbSet<User> Users { get; set; }
 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
+        /// <param name="options"></param>
         public ApplicationContext(DbContextOptions options) : base(options)
         {
         }

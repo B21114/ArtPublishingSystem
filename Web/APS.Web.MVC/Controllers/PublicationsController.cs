@@ -25,8 +25,8 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("save-publication")]
-        public async Task<IActionResult> CreatePublications([FromBody] CreatePublicationRequest command)
+        [Route("Publications/SavePublication.cshtml")]
+        public async Task<IActionResult> CreatePublications([FromForm] CreatePublicationRequest command)
         {
             var result = _mediator.Send(command);
             return Ok(result);

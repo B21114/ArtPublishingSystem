@@ -20,6 +20,11 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
         public IFormFile UploadFile { get; set; }
 
         /// <summary>
+        /// Имя загружаемого файла.
+        /// </summary>
+        public string FileName { get; set; }
+
+        /// <summary>
         /// Признак публичной доступности файла.
         /// </summary>
         public bool IsPublic { get; set; }

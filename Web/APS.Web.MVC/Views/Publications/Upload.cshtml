@@ -1,4 +1,4 @@
-﻿@model PublicationsModel
+﻿@model CreatePublicationRequest
 
 
 <h2>Загрузка файла</h2>
@@ -14,7 +14,7 @@
         <input asp-for="IsPublic" />
     </div>
     <div>
-        <input type="file" name="Загружаемый файл" /><br>
+        <input type="file" asp-for="UploadFile" /><br>
         <input type="submit" value="Загрузить" />
     </div>
 </form>
