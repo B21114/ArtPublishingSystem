@@ -10,12 +10,12 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
     /// <summary>
     /// Класс для проверки добавляемого файла.
     /// </summary>
-    public class PublicationValidator : AbstractValidator<CreatePublicationRequest>
+    public class CreatePublicationRequestValidator : AbstractValidator<CreatePublicationRequest>
     {
         /// <summary>
         /// Проверка что поля не пустые, если пустые выброс исключения.
         /// </summary>
-        public PublicationValidator()
+        public CreatePublicationRequestValidator()
         {
             RuleFor(rules => rules.UploadFile)
                 .NotNull();
@@ -27,7 +27,7 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
         }
 
         CreatePublicationRequest rules = new CreatePublicationRequest();
-        PublicationValidator validator = new PublicationValidator();
+        CreatePublicationRequestValidator validator = new CreatePublicationRequestValidator();
 
 
     }

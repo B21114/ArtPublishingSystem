@@ -11,7 +11,7 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
     /// <summary>
     /// Запрос файла.
     /// </summary>
-    public class CreatePublicationRequest : PublicationValidator, IRequest<CreatePublicationResponse>
+    public class CreatePublicationRequest : IRequest<CreatePublicationResponse>
     {
 
         /// <summary>
