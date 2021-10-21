@@ -1,0 +1,20 @@
+﻿@model PublicationsModel
+
+
+<h2>Загрузка файла</h2>
+<form method="post" asp-controller="Publications" asp-action="CreatePublications" enctype="multipart/form-data">
+
+    <div>
+        <label asp-for="FileName"></label><br />
+        <input asp-for="FileName" />
+        <span asp-validation-for="FileName"></span>
+    </div>
+    <div>
+        <label asp-for="IsPublic"></label><br />
+        <input asp-for="IsPublic" />
+    </div>
+    <div>
+        <input type="file" name="Загружаемый файл" /><br>
+        <input type="submit" value="Загрузить" />
+    </div>
+</form>

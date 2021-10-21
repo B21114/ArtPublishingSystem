@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace APS.Web.MVC.Controllers
 {
+    /// <summary>
+    /// Контроллер создания публикации.
+    /// </summary>
     public class PublicationsController : Controller
     {
         private readonly IMediator _mediator;
@@ -16,6 +19,11 @@ namespace APS.Web.MVC.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Метод создания публикации.
+        /// </summary>
+        /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("save-publication")]
         public async Task<IActionResult> CreatePublications([FromBody] CreatePublicationRequest command)
@@ -23,7 +31,13 @@ namespace APS.Web.MVC.Controllers
             var result = _mediator.Send(command);
             return Ok(result);
         }
-        public IActionResult Index()
+
+        /// <summary>
+        /// Метод вывода информации.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Upload()
         {
             return View();
         }
