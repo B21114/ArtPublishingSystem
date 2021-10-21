@@ -50,21 +50,17 @@ namespace APS.CMS.Application.Publications.Queries.RegistrationUser
             };
             User user = new User()
             {
+                Id = Guid.NewGuid(),
                 Person = person,
                 Email = request.Email,
             };
             await _userManager.CreateAsync(user, request.Password);
-            
-            //Добавление нового пользователя в базу данных.
-            await _applicationContext.Users.AddAsync(user);
-
-            //Асинхронно сохраняет все изменения в базу данных.
-            await _applicationContext.SaveChangesAsync();
 
             //Возвращает экземпляр класса RegistrationUserResponse с Id новой записи о пользователе.
             return new RegistrationUserResponse
             {
-                IdUser = user.Id
+                IdUser = user.Id,
+                Url = "https://localhost:44369/"
             };
         }
     }

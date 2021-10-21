@@ -13,35 +13,36 @@
         <span asp-validation-for="Password"></span>
     </div>
     <div>
-        <label asp-for="PasswordConfirm"></label><br />
-        <input asp-for="PasswordConfirm" />
-        <span asp-validation-for="PasswordConfirm"></span>
+        <label asp-for="ConfirmedPassword"></label><br />
+        <input asp-for="ConfirmedPassword" />
+        <span asp-validation-for="ConfirmedPassword"></span>
     </div>
     <div>
-        <label asp-for="Person.Firstname">Имя</label><br />
-        <input asp-for="Person.Firstname" />
-        <span asp-validation-for="Person.Firstname"></span>
-    </div>
-
-    <div>
-        <label asp-for="Person.Patronymic">Отчество</label><br />
-        <input asp-for="Person.Patronymic" />
-        <span asp-validation-for="Person.Patronymic"></span>
+        <label asp-for="Firstname">Имя</label><br />
+        <input asp-for="Firstname" />
+        <span asp-validation-for="Firstname"></span>
     </div>
 
     <div>
-        <label asp-for="Person.Lastname">Фамилия</label><br />
-        <input asp-for="Person.Lastname" />
-        <span asp-validation-for="Person.Lastname"></span>
+        <label asp-for="Patronymic">Отчество</label><br />
+        <input asp-for="Patronymic" />
+        <span asp-validation-for="Patronymic"></span>
     </div>
 
     <div>
-        <label asp-for="Person.ВirthDate">Дата рождения</label><br />
-        <input asp-for="Person.ВirthDate" />
-        <span asp-validation-for="Person.ВirthDate"></span>
+        <label asp-for="Lastname">Фамилия</label><br />
+        <input asp-for="Lastname" />
+        <span asp-validation-for="Lastname"></span>
     </div>
 
     <div>
-        <input type="submit" value="Регистрация" />
+        <label asp-for="ВirthDate">Дата рождения</label><br />
+        <input asp-for="ВirthDate" />
+        <span asp-validation-for="ВirthDate"></span>
+    </div>
+
+    <div>
+        <br />
+        <input type="submit" value="Зарегистрироваться" />
     </div>
 </form>

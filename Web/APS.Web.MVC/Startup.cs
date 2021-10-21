@@ -13,6 +13,7 @@ using System.Reflection;
 using MediatR;
 using APS.DBS.Domain;
 using AutoMapper;
+using APS.DBS.Domain.Entities.Identity;
 
 namespace APS.Web.MVC
 {
@@ -41,7 +42,7 @@ namespace APS.Web.MVC
             services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("MyDataBase"));
 
             // Сервис для начальной установки конфигурации.
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<ApplicationContext>();
 
             // Сервис представляющий заголовки содержимого и тело сущности HTTP.
             services.AddHttpContextAccessor();
