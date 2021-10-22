@@ -58,6 +58,8 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
 
             var person = new Person { Id = user.PersonId };
 
+            var file = new File();
+
             var content = new Content
             {
                 Id = Guid.NewGuid(),
@@ -65,7 +67,7 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
                 Author = person,
                 IsPublic = request.IsPublic,
                 UploadDateTime = DateTime.Now,
-                File = (File)request.UploadFile
+                File = file
             };
 
             // Начинает отслеживание сущности контент.
