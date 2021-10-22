@@ -1,4 +1,5 @@
 ﻿using APS.CMS.Application.Publications.Commands.CreatePublication;
+using APS.CMS.Application.Publications.Commands.DownloadPublication;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,11 +26,20 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Publications/SavePublication.cshtml")]
+        [Route("Publications/SavePublication")]
         public async Task<IActionResult> CreatePublications([FromForm] CreatePublicationRequest command)
         {
             var result = _mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("Publications/DownloadPublication")]
+        public async Task<IActionResult> DownloadPublications(DownloadPublicationRequest command)
+        {
+
+            var result = _mediator.Send(command);
+            return File(result);
         }
 
         /// <summary>

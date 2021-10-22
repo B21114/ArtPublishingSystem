@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,8 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
     public class DownloadPublicationResponse
     {
         /// <summary>
-        ///  Хранит идентификатор новой записи.
+        /// Скачиваемый файл.
         /// </summary>
-        public Guid IdRecord { get; set; }
+        public IFormFile DownloadFile { get; set; }
     }
 }

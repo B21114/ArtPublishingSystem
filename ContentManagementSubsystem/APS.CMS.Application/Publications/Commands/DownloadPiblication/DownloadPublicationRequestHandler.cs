@@ -58,28 +58,14 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
 
             var person = new Person { Id = user.PersonId };
 
-            var file = new File();
 
-            var content = new Content
-            {
-                Id = Guid.NewGuid(),
-                Name = request.FileName,
-                Author = person,
-                IsPublic = request.IsPublic,
-                UploadDateTime = DateTime.Now,
-                File = file
-            };
+            // Получение файла по Id.
+            var content = await _contentDbContext.Contents.FindAsync(request.IdRecord);
 
-            // Начинает отслеживание сущности контент.
-            await _contentDbContext.Contents.AddAsync(content);
-
-            // Асинхронно сохраняет все изменения, внесенные в этом контексте, в основную базу данных.
-            await _contentDbContext.SaveChangesAsync();
-
-            // Возвращает экземпляр класса CreatePublicationResponse с Id новой записи.
+            // Возвращает экземпляр класса DownloadPublicationResponse.
             return new DownloadPublicationResponse
             {
-                IdRecord = content.Id
+                DownloadFile = content
             };
         }
     }

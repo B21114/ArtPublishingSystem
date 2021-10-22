@@ -13,22 +13,9 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
     /// </summary>
     public class DownloadPublicationRequest : IRequest<DownloadPublicationResponse>
     {
-
         /// <summary>
-        /// Загружаемый файл.
+        ///  Хранит идентификатор записи.
         /// </summary>
-        public IFormFile UploadFile { get; set; }
-
-        /// <summary>
-        /// Имя загружаемого файла.
-        /// </summary>
-        public string FileName { get; set; }
-
-        /// <summary>
-        /// Признак публичной доступности файла.
-        /// </summary>
-        public bool IsPublic { get; set; }
-
-
+        public Guid IdRecord { get; set; }
     }
 }
