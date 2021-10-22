@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -53,12 +54,29 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
            CreatePublicationRequest request,
            CancellationToken cancellationToken)
         {
+
+            using var memory = new MemoryStream();
+            using var read = request.UploadFile.OpenReadStream();
+            read.CopyTo(memory);
+
             var user = await _applicationContext.Users
                 .FindAsync(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
 
             var person = new Person { Id = user.PersonId };
 
-            var file = new File();
+            var _filetype = string.Empty;
+            if (Path.GetExtension(request.FileName) == ".txt")
+                _filetype = "Текстовый документ";
+
+            var file = new DBS.Domain.Entities.File
+            {
+                Id = new Guid(),
+                FileSize = read.Length,
+                FileName = request.FileName,
+                FileContent = memory.ToArray(),
+                FileExtension = Path.GetExtension(request.FileName),
+                FileType = _filetype
+            };
 
             var content = new Content
             {
