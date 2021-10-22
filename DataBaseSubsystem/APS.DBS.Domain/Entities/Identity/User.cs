@@ -13,6 +13,16 @@ namespace APS.Dbs.Domain.Entities.Identity
     public class User : IdentityUser<Guid>
     {
         /// <summary>
+        /// Логин пользваотеля.
+        /// </summary>
+        public string Login { get; set; }
+
+        /// <summary>
+        /// Пароль пользователя.
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
         /// Личные данные.
         /// </summary>
         [ForeignKey("PersonId")]

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APS.DBS.Domain", "DataBaseS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APS.DBS.Infrastructure", "DataBaseSubsystem\APS.DBS.Infrastructure\APS.DBS.Infrastructure.csproj", "{204F16E0-6F2D-4E8C-8BAE-FAB1B8EF8BD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS.Web.MVC", "Web\APS.Web.MVC\APS.Web.MVC.csproj", "{A1DBAD19-9A4B-439D-BA99-6B62C3A7E85E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APS.Web.MVC", "Web\APS.Web.MVC\APS.Web.MVC.csproj", "{A1DBAD19-9A4B-439D-BA99-6B62C3A7E85E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

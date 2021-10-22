@@ -1,6 +1,9 @@
-﻿using APS.CMS.Application.Publications.Queries.RegistrationUser;
+﻿using APS.CMS.Application.Publications.Queries.LoginUser;
+using APS.CMS.Application.Publications.Queries.RegistrationUser;
+using APS.Dbs.Domain.Entities.Identity;
 using APS.Web.MVC.Models;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,11 +15,13 @@ namespace APS.Web.MVC.Controllers
     public class AccountController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
 
-        public AccountController(IMediator mediator)
+        public AccountController(IMediator mediator, SignInManager<User> signInManager)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _signInManager = signInManager;
         }
 
         /// <summary>
@@ -43,42 +48,22 @@ namespace APS.Web.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login()
         {
-            return View(new LoginModel { ReturnUrl = returnUrl });
+            return View("LogIn");
         }
 
         /// <summary>
-        /// Метод для авторизации пользователя.
+        /// Метод для аунтетификации пользователя.
         /// </summary>
-        /// <param name="loginModel">Модель авторизации</param>
+        /// <param name="loginUserRequest">Модель авторизации</param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginIn(LoginModel loginModel)
-        {/*
-            if (ModelState.IsValid)
-            {
-                var result = await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
-                if (result.Succeeded)
-                {
-                    //Проверяем пренадлежит ои URL приложению
-                    if (!string.IsNullOrEmpty(loginModel.ReturnUrl) && Url.IsLocalUrl(loginModel.ReturnUrl))
-                    {
-                        return Redirect(loginModel.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Не правильный логин и(или) пароль!");
-                }
-            }
-            return View(loginModel);*/
-            throw new NotImplementedException();
+        public async Task<IActionResult> LoginUser(LoginUserRequest loginUserRequest, CancellationToken cancellationToken)
+        {
+            var response = await _mediator.Send(loginUserRequest, cancellationToken);
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -90,9 +75,8 @@ namespace APS.Web.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOut()
         {
-            /* await _signInManager.SignOutAsync();
-             return RedirectToAction("Index", "Home");*/
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

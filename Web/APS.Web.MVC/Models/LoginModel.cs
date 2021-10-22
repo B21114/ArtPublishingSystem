@@ -11,8 +11,8 @@ namespace APS.Web.MVC.Models
         /// Почта пользоавтеля.
         /// </summary>
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Login")]
+        public string Login { get; set; }
 
         /// <summary>
         /// Пароль пользователя.
@@ -27,10 +27,5 @@ namespace APS.Web.MVC.Models
         /// </summary>
         [Display(Name = "Запомнить?")]
         public bool RememberMe { get; set; }
-
-        /// <summary>
-        /// Свойство для возвращения URL.
-        /// </summary>
-        public string ReturnUrl { get; set; }
     }
 }
