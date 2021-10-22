@@ -11,6 +11,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.MimeMapping;
+
 
 namespace APS.CMS.Application.Publications.Commands.CreatePublication
 {
@@ -64,10 +66,6 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
 
             var person = new Person { Id = user.PersonId };
 
-            var _filetype = string.Empty;
-            if (Path.GetExtension(request.FileName) == ".txt")
-                _filetype = "Текстовый документ";
-
             var file = new DBS.Domain.Entities.File
             {
                 Id = new Guid(),
@@ -75,8 +73,8 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
                 FileName = request.FileName,
                 FileContent = memory.ToArray(),
                 FileExtension = Path.GetExtension(request.FileName),
-                FileType = _filetype
-            };
+                FileType = request.UploadFile.ContentType
+        };
 
             var content = new Content
             {
