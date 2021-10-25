@@ -11,13 +11,18 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
     /// <summary>
     /// Запрос файла.
     /// </summary>
-    public class CreatePublicationRequest : PublicationValidator, IRequest<CreatePublicationResponse>
+    public class CreatePublicationRequest : IRequest<CreatePublicationResponse>
     {
 
         /// <summary>
         /// Загружаемый файл.
         /// </summary>
         public IFormFile UploadFile { get; set; }
+
+        /// <summary>
+        /// Имя загружаемого файла.
+        /// </summary>
+        public string FileName { get; set; }
 
         /// <summary>
         /// Признак публичной доступности файла.

@@ -17,5 +17,10 @@ namespace APS.Dbs.Domain.Entities.Identity
         /// </summary>
         [ForeignKey("PersonId")]
         public Person Person { get; set; }
+
+        /// <summary>
+        /// Идентификатор персоны в пользователе.
+        /// </summary>
+        public Guid PersonId { get; set; }
     }
 }
