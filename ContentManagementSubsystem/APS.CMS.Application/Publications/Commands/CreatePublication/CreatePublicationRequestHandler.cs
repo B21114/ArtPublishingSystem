@@ -58,8 +58,8 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
         {
 
             using var memory = new MemoryStream();
-            using var read = request.UploadFile.OpenReadStream();
-            read.CopyTo(memory);
+            using var readMemory = request.UploadFile.OpenReadStream();
+            readMemory.CopyTo(memory);
 
             var user = await _applicationContext.Users
                 .FindAsync(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
@@ -69,8 +69,8 @@ namespace APS.CMS.Application.Publications.Commands.CreatePublication
             var file = new DBS.Domain.Entities.File
             {
                 Id = new Guid(),
-                FileSize = read.Length,
-                FileName = request.FileName,
+                FileSize = readMemory.Length,
+                FileName = Path.GetFileNameWithoutExtension(request.FileName),
                 FileContent = memory.ToArray(),
                 FileExtension = Path.GetExtension(request.FileName),
                 FileType = request.UploadFile.ContentType

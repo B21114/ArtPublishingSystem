@@ -65,12 +65,12 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
             // Возвращает экземпляр класса DownloadPublicationResponse.
             return new DownloadPublicationResponse
             {
-                FileName = content.Name,
+                FileName = content.File.FileName,
 
-       FileContent =content.File,
+                FileContent = content.File.FileContent,
 
-  FileExtension = content.Fil
-    };
+                FileExtension = content.File.FileExtension
+            };
         }
     }
 }
