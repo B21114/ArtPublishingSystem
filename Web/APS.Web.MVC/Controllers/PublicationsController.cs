@@ -35,11 +35,11 @@ namespace APS.Web.MVC.Controllers
 
         [HttpGet]
         [Route("Publications/DownloadPublication")]
-        public async Task<IActionResult> DownloadPublications(DownloadPublicationRequest command)
+        public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
         {
 
             var result = _mediator.Send(command);
-            return File(result);
+            return File(command.FileContent, command.FileExtension, command.FileName);
         }
 
         /// <summary>

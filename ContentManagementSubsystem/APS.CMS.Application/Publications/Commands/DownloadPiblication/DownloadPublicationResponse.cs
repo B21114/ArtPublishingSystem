@@ -13,8 +13,18 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
     public class DownloadPublicationResponse
     {
         /// <summary>
-        /// Скачиваемый файл.
+        /// Имя скачиваемого файла файла.
         /// </summary>
-        public IFormFile DownloadFile { get; set; }
+        public string FileName { get; set; }
+
+        /// <summary>
+        /// Содержимое файла.
+        /// </summary>
+        public byte[] FileContent { get; set; }
+
+        /// <summary>
+        /// Расширение файла.
+        /// </summary>
+        public string FileExtension { get; set; }
     }
 }
