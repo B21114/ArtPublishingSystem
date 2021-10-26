@@ -31,15 +31,13 @@ namespace APS.CMS.Application.Publications.Queries.LoginUser
             {
                 var user = await _signInManager.PasswordSignInAsync(request.Login, request.Password, request.RememberMe, false);
             }
-            catch
+            catch(Exception ex)
             {
-               
+                Console.WriteLine(ex.Message);
+                string mes = "Упс! Что-то пошло не так.";
             }
 
-            return new LoginUserResponse
-            {
-                UserLogin = request.Login
-            };
+            return new LoginUserResponse { };
         }
     }
 }

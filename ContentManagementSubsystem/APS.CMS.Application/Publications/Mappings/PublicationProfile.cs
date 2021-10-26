@@ -41,10 +41,6 @@ namespace APS.CMS.Application.Publications.Mappings
                     o3.Author.Patronymic)))
                 .ForMember(dto => dto.UploadDateTime, o2 => o2.MapFrom(o3 => o3.UploadDateTime))
                 .ForMember(dto => dto.IsPublic, o2 => o2.MapFrom(o3 => o3.IsPublic));
-
-            CreateMap<User, LoginUserDto>()
-                .ForMember(dto => dto.Login, o2 => o2.MapFrom(o3 => o3.Login))
-                .ForMember(dto => dto.Password, o2 => o2.MapFrom(o3 => o3.Password));
         }
     }
 }

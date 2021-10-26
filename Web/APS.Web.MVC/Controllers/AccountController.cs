@@ -62,6 +62,7 @@ namespace APS.Web.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginUser(LoginUserRequest loginUserRequest, CancellationToken cancellationToken)
         {
+
             var response = await _mediator.Send(loginUserRequest, cancellationToken);
             return RedirectToAction("Index", "Home");
         }
