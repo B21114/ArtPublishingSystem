@@ -37,7 +37,6 @@ namespace APS.Web.MVC.Controllers
         [Route("Publications/DownloadPublication")]
         public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
         {
-
             var result = _mediator.Send(command);
             return File(command.FileContent, command.FileExtension, command.FileName);
         }

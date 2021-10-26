@@ -15,20 +15,20 @@ namespace APS.Web.MVC.Models
         /// Имя файла.
         /// </summary>
         [Required]
-        [Display(Name = "Имя файла")]
+        [Display(Name = "Скачиваемый файл")]
         public string FileName { get; set; }
 
         /// <summary>
-        /// Признак публичной доступности файла.
+        /// Содержимое файла.
         /// </summary>
-        [Display(Name = "Общедоступный файл?")]
-        public bool IsPublic { get; set; }
+        [Display(Name = "Файл")]
+        public byte[] FileContent { get; set; }
 
         /// <summary>
-        /// Загружаемый файл.
+        /// Расширение файла.
         /// </summary>
-        [Display(Name = "Загружаемый файл")]
-        public IFormFile UploadFile { get; set; }
+        [Display(Name = "Расширение файла")]
+        public string FileExtension { get; set; }
 
 
     }

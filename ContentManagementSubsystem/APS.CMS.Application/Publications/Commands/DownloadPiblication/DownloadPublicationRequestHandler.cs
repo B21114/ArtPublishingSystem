@@ -58,19 +58,38 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
 
             var person = new Person { Id = user.PersonId };
 
-
             // Получение файла по Id.
             var content = await _contentDbContext.Contents.FindAsync(request.IdRecord);
 
-            // Возвращает экземпляр класса DownloadPublicationResponse.
-            return new DownloadPublicationResponse
+            // Проверка публичности файла, если файл не публичный, то проверяем, является ли пользователь владельцем файла.
+            if (content.IsPublic == true)
             {
-                FileName = content.File.FileName,
+                // Возвращает экземпляр класса DownloadPublicationResponse.
+                return new DownloadPublicationResponse
+                {
+                    FileName = content.File.FileName,
 
-                FileContent = content.File.FileContent,
+                    FileContent = content.File.FileContent,
 
-                FileExtension = content.File.FileExtension
-            };
+                    FileExtension = content.File.FileExtension
+                };
+            }
+            else
+            {
+                if (person == content.Author)
+                {
+                    return new DownloadPublicationResponse
+                    {
+                        FileName = content.File.FileName,
+
+                        FileContent = content.File.FileContent,
+
+                        FileExtension = content.File.FileExtension
+                    };
+                }
+                else
+                    return new DownloadPublicationResponse();
+            }
         }
     }
 }
