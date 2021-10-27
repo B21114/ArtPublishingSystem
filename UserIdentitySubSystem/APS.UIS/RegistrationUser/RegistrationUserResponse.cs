@@ -5,7 +5,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APS.CMS.Application.Publications.Queries.RegistrationUser
+namespace APS.UIS.RegistrationUser
 {
     /// <summary>
     /// Ответ.
