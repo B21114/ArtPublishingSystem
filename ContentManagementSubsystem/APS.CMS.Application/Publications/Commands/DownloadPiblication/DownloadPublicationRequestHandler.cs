@@ -74,7 +74,7 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
                     FileExtension = content.File.FileExtension
                 };
             }
-            throw new Exception();
+            throw new Exception("Что-то пошло не так");
         }
     }
 }
