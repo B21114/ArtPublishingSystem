@@ -1,5 +1,6 @@
 ﻿using APS.CMS.Application.Publications.Commands.CreatePublication;
 using APS.CMS.Application.Publications.Commands.DownloadPublication;
+using APS.CMS.Application.Publications.Queries.GetPublicationById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -44,6 +45,19 @@ namespace APS.Web.MVC.Controllers
         {
             var result = _mediator.Send(command);
             return File(command.FileContent, command.FileExtension, command.FileName);
+        }
+
+        /// <summary>
+        /// Метод скачивания файла
+        /// </summary>
+        /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
+        /// <returns>Возвращает файл</returns>
+        [HttpGet]
+        [Route("Publications/GetPublicationById")]
+        public async Task<IActionResult> GetPublicationById(GetPublicationByIdRequest command)
+        {
+            var result = _mediator.Send(command);
+            return Ok(result);
         }
 
         /// <summary>
