@@ -10,24 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace APS.CMS.Application.Publications.Queries.RegistrationUser
+namespace APS.UIS.RegistrationUser
 {
     /// <summary>
     /// Данные запроса на регистрацию нового пользователя.
     /// </summary>
     public class RegistrationUserRequestHandler : IRequestHandler<RegistrationUserRequest, RegistrationUserResponse>
     {
-        private readonly ApplicationContext _applicationContext;
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signManager;
+
 
         /// <summary>
         /// Конструктор обработчика запросов, на регистрацию нового пользователя.
         /// </summary>
-        /// <param name="applicationContext">Контекст базы данных.</param>
-        public RegistrationUserRequestHandler(ApplicationContext applicationContext, UserManager<User> userManager)
+        /// <param name="userManager"></param>
+        public RegistrationUserRequestHandler(UserManager<User> userManager)
         {
-            _applicationContext = applicationContext;
             _userManager = userManager;
         }
 

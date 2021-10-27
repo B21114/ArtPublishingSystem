@@ -1,17 +1,13 @@
 ﻿using APS.Dbs.Domain.Entities.Identity;
-using APS.DBS.Domain;
-using APS.Web.MVC.DataBaseContext;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace APS.CMS.Application.Publications.Queries.LoginUser
+namespace APS.UIS.LoginUser
 {
     public class LoginUserRequestHandler : IRequestHandler<LoginUserRequest, LoginUserResponse>
     {
@@ -27,17 +23,15 @@ namespace APS.CMS.Application.Publications.Queries.LoginUser
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
         {
 
-            try
-            {
-                var user = await _signInManager.PasswordSignInAsync(request.Login, request.Password, request.RememberMe, false);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                string mes = "Упс! Что-то пошло не так.";
-            }
 
-            return new LoginUserResponse { };
+            var user = await _signInManager.PasswordSignInAsync(request.Login, request.Password, request.RememberMe, false);
+
+
+            if (!user.Succeeded)
+            {
+                Console.WriteLine("Пользователь не зарегистрирован!");
+            }
+                return new LoginUserResponse { };
         }
     }
 }

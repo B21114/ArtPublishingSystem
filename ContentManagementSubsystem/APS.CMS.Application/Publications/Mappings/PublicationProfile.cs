@@ -1,7 +1,5 @@
 ﻿using APS.CMS.Application.Publications.Queries.GetPublicationById;
 using APS.CMS.Application.Publications.Queries.GetPublicationList;
-using APS.CMS.Application.Publications.Queries.LoginUser;
-using APS.Dbs.Domain.Entities.Identity;
 using APS.DBS.Domain.Entities;
 using AutoMapper;
 

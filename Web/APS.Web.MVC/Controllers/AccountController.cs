@@ -1,6 +1,7 @@
-﻿using APS.CMS.Application.Publications.Queries.LoginUser;
-using APS.CMS.Application.Publications.Queries.RegistrationUser;
+﻿
 using APS.Dbs.Domain.Entities.Identity;
+using APS.UIS.LoginUser;
+using APS.UIS.RegistrationUser;
 using APS.Web.MVC.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +17,6 @@ namespace APS.Web.MVC.Controllers
     {
         private readonly IMediator _mediator;
         private readonly SignInManager<User> _signInManager;
-        private readonly ILogger<AccountController> _logger;
 
         public AccountController(IMediator mediator, SignInManager<User> signInManager)
         {
@@ -43,7 +43,14 @@ namespace APS.Web.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationUserRequest registrationUserRequest, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(registrationUserRequest, cancellationToken);
+            try
+            {
+                var response = await _mediator.Send(registrationUserRequest, cancellationToken);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Что-то пошло не так!: {ex}");
+            }
             return View("LogIn");
         }
 
@@ -62,8 +69,14 @@ namespace APS.Web.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginUser(LoginUserRequest loginUserRequest, CancellationToken cancellationToken)
         {
-
-            var response = await _mediator.Send(loginUserRequest, cancellationToken);
+            try
+            {
+                var response = await _mediator.Send(loginUserRequest, cancellationToken);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Не правильно введён логин или пароль {ex}");
+            }
             return RedirectToAction("Index", "Home");
         }
 

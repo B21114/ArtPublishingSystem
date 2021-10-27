@@ -56,7 +56,11 @@ namespace APS.Web.MVC
             // Получение типов.
             var assemblies = new Assembly[]
             {
-                typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly
+                typeof(APS.CMS.Application.Bootstrap.ServiceCollectionExtensions).Assembly,
+                typeof(APS.UIS.RegistrationUser.RegistrationUserRequest).Assembly,
+                typeof(APS.UIS.RegistrationUser.RegistrationUserRequestHandler).Assembly,
+                typeof(APS.UIS.RegistrationUser.RegistrationUserResponse).Assembly,
+                typeof(APS.UIS.RegistrationUser.RegistrationUserValidator).Assembly,
             };
 
             // Сервис позволяющий проецировать одну модель на другую.

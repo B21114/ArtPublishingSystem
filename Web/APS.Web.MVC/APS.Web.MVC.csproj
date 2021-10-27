@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ContentManagementSubsystem\APS.CMS.Application\APS.CMS.Application.csproj" />
     <ProjectReference Include="..\..\DataBaseSubsystem\APS.DBS.Infrastructure\APS.DBS.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\UserIdentitySubSystem\APS.UIS\APS.UIS.Application.csproj" />
   </ItemGroup>
 
 </Project>

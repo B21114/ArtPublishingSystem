@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APS.CMS.Application.Publications.Queries.LoginUser
+namespace APS.UIS.LoginUser
 {
     public class LoginUserResponse
     {
