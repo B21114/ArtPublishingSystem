@@ -43,7 +43,7 @@ namespace APS.Web.MVC.Controllers
         public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
         {
             var result = _mediator.Send(command);
-            return File(command.FileContent, command.FileExtension, command.FileName);
+            return File(command.FileContent, command.FileType, command.FileName + "." + command.FileExtension);
         }
 
         /// <summary>

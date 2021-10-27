@@ -64,14 +64,15 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
 
             // Проверка публичности файла, если файл не публичный,
             // проверяем, является ли пользователь владельцем файла.
-            if (content.IsPublic == true || content.Author.User.PersonId == user.PersonId)
+            if (content.IsPublic == true || content.Author.Id == user.PersonId)
             {
                 // Возвращает экземпляр класса DownloadPublicationResponse.
                 return new DownloadPublicationResponse
                 {
                     FileName = content.File.FileName,
                     FileContent = content.File.FileContent,
-                    FileExtension = content.File.FileExtension
+                    FileExtension = content.File.FileExtension,
+                    FileType = content.File.FileType
                 };
             }
             throw new Exception("Что-то пошло не так");
