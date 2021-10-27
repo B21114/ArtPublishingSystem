@@ -11,6 +11,6 @@ namespace APS.UIS.LoginUser
         /// <summary>
         /// Логин авторизованного пользователя.
         /// </summary>
-        public string UserLogin { get; set; }
+        public string SignInResult { get; set; }
     }
 }

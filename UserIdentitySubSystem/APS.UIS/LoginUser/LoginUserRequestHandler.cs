@@ -22,10 +22,9 @@ namespace APS.UIS.LoginUser
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
         {
+            var signInResult = await _signInManager.PasswordSignInAsync(request.Login, request.Password, request.RememberMe, false);
 
-            var user = await _signInManager.PasswordSignInAsync(request.Login, request.Password, request.RememberMe, false);
-
-            if (!user.Succeeded)
+            if (!signInResult.Succeeded)
             {
                 Console.WriteLine("Пользователь не зарегистрирован!");
             }
