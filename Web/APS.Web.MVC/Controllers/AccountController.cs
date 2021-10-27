@@ -73,9 +73,10 @@ namespace APS.Web.MVC.Controllers
             {
                 var response = await _mediator.Send(loginUserRequest, cancellationToken);
             }
-            catch(Exception ex)
+            catch(InvalidOperationException ex)
             {
-                Console.WriteLine($"Не правильно введён логин или пароль {ex}");
+                Console.WriteLine($"{ex.Message}");
+                Redirect("LogIn");
             }
             return RedirectToAction("Index", "Home");
         }

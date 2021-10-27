@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\UserIdentitySubSystem\APS.UIS\APS.UIS.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Error\" />
+  </ItemGroup>
+
 </Project>

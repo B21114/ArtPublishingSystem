@@ -14,6 +14,7 @@ using MediatR;
 using APS.DBS.Domain;
 using AutoMapper;
 using APS.DBS.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace APS.Web.MVC
 {
@@ -61,6 +62,9 @@ namespace APS.Web.MVC
                 typeof(APS.UIS.RegistrationUser.RegistrationUserRequestHandler).Assembly,
                 typeof(APS.UIS.RegistrationUser.RegistrationUserResponse).Assembly,
                 typeof(APS.UIS.RegistrationUser.RegistrationUserValidator).Assembly,
+                typeof(APS.UIS.LoginUser.LoginUserRequest).Assembly,
+                typeof(APS.UIS.LoginUser.LoginUserRequestHandler).Assembly,
+                typeof(APS.UIS.LoginUser.LoginUserResponse).Assembly
             };
 
             // Сервис позволяющий проецировать одну модель на другую.
@@ -71,6 +75,9 @@ namespace APS.Web.MVC
 
             // Добавляются все сервисы MVC.
             services.AddMvc();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => options.LoginPath = new Microsoft.AspNetCore.Http.PathString("Account/LogIn"));
 
             services.AddControllersWithViews();
         }
