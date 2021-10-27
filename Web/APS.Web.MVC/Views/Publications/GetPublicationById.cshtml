@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model PublicationDetailsDto
+
+
+    <h2>Информация о файле</h2>
+    <form method="get" asp-controller="Publications" asp-action="GetpublicationById">
+
+        <div>
+            <label>Название файла:</label>
+            @Model.Name
+        <div>
+            <label>Фамилия Имя Отчество автора:</label>
+            @Model.AuthorFullName
+        </div>
+        <div>
+            <label>Время загрузки файла:</label>
+            @Model.UploadDateTime
+        </div>
+    </form>

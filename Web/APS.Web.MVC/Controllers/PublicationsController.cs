@@ -65,13 +65,19 @@ namespace APS.Web.MVC.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult UploadPublication()
+        public IActionResult Upload()
         {
-            return View();
+            return View("UploadPublication");
         }
 
         [HttpGet]
-        public IActionResult DownloadPublication()
+        public IActionResult Download()
+        {
+            return View("DownloadPublication");
+        }
+
+        [HttpGet]
+        public IActionResult GetPublicationById()
         {
             return View();
         }
