@@ -27,7 +27,7 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Publications/SavePublication")]
+        [Route("SavePublication")]
         public async Task<IActionResult> CreatePublications([FromForm] CreatePublicationRequest command)
         {
             var result = _mediator.Send(command);
@@ -40,7 +40,7 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns>Возвращает файл</returns>
         [HttpGet]
-        [Route("Publications/DownloadPublication")]
+        [Route("DownloadPublication")]
         public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
         {
             var result = _mediator.Send(command);
@@ -53,7 +53,7 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns>Возвращает файл</returns>
         [HttpGet]
-        [Route("Publications/GetPublicationById")]
+        [Route("GetPublicationById")]
         public async Task<IActionResult> GetPublicationById(GetPublicationByIdRequest command)
         {
             var result = _mediator.Send(command);
@@ -65,7 +65,13 @@ namespace APS.Web.MVC.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Upload()
+        public IActionResult UploadPublication()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DownloadPublication()
         {
             return View();
         }
