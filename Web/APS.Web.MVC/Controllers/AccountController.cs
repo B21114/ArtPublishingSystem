@@ -1,5 +1,6 @@
 ﻿
 using APS.Dbs.Domain.Entities.Identity;
+using APS.UIS.Application.LoginOut;
 using APS.UIS.LoginUser;
 using APS.UIS.RegistrationUser;
 using APS.Web.MVC.Models;
@@ -88,9 +89,9 @@ namespace APS.Web.MVC.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogOut()
+        public async Task<IActionResult> LogOut(LogOutRequest logOutRequest, CancellationToken cancellationToken)
         {
-            await _signInManager.SignOutAsync();
+            var response = await _mediator.Send(logOutRequest, cancellationToken);
             return RedirectToAction("Index", "Home");
         }
     }
