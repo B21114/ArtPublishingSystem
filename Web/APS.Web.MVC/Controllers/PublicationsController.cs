@@ -33,6 +33,11 @@ namespace APS.Web.MVC.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Метод скачивания файла
+        /// </summary>
+        /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
+        /// <returns>Возвращает файл</returns>
         [HttpGet]
         [Route("Publications/DownloadPublication")]
         public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
