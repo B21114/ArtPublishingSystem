@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APS.CMS.Application.Publications.Queries.RegistrationUser
+namespace APS.UIS.RegistrationUser
 {
     /// <summary>
     /// Класс валидации при регистрации нового пользователя.

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
@@ -61,35 +62,20 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
             // Получение файла по Id.
             var content = await _contentDbContext.Contents.FindAsync(request.IdRecord);
 
-            // Проверка публичности файла, если файл не публичный, то проверяем, является ли пользователь владельцем файла.
-            if (content.IsPublic == true)
+            // Проверка публичности файла, если файл не публичный,
+            // проверяем, является ли пользователь владельцем файла.
+            if (content.IsPublic == true || content.Author.Id == user.PersonId)
             {
                 // Возвращает экземпляр класса DownloadPublicationResponse.
                 return new DownloadPublicationResponse
                 {
                     FileName = content.File.FileName,
-
                     FileContent = content.File.FileContent,
-
-                    FileExtension = content.File.FileExtension
+                    FileExtension = content.File.FileExtension,
+                    FileType = content.File.FileType
                 };
             }
-            else
-            {
-                if (person == content.Author)
-                {
-                    return new DownloadPublicationResponse
-                    {
-                        FileName = content.File.FileName,
-
-                        FileContent = content.File.FileContent,
-
-                        FileExtension = content.File.FileExtension
-                    };
-                }
-                else
-                    return new DownloadPublicationResponse();
-            }
+            throw new Exception("Что-то пошло не так");
         }
     }
 }

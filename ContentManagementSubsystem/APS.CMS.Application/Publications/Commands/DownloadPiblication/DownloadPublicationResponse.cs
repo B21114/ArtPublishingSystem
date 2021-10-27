@@ -26,5 +26,10 @@ namespace APS.CMS.Application.Publications.Commands.DownloadPublication
         /// Расширение файла.
         /// </summary>
         public string FileExtension { get; set; }
+
+        /// <summary>
+        /// Тип содержимого файла.
+        /// </summary>
+        public string FileType { get; set; }
     }
 }
