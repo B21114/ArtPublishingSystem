@@ -29,7 +29,6 @@ namespace APS.Web.MVC.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("CreatePublication")]
-        [AllowAnonymous]
         public async Task<IActionResult> CreatePublication([FromForm] CreatePublicationRequest command)
         {
             var result = await _mediator.Send(command);
