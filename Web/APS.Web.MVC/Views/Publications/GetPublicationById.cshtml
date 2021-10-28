@@ -6,13 +6,14 @@
 
         <div>
             <label>Название файла:</label>
-            @Model.Name
-        <div>
-            <label>Фамилия Имя Отчество автора:</label>
-            @Model.AuthorFullName
+            <p>@Model.Name</p>
         </div>
         <div>
-            <label>Время загрузки файла:</label>
-            @Model.UploadDateTime
+            <label>Фамилия Имя Отчество автора:</label>
+            <p>@Model.AuthorFullName</p>
+        </div>
+        <div>
+            <label>Время и дата загрузки файла:</label>
+            <p>@Model.UploadDateTime</p>
         </div>
     </form>

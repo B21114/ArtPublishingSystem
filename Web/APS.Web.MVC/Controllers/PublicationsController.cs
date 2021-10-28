@@ -27,41 +27,41 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("SavePublication")]
-        public async Task<IActionResult> CreatePublications([FromForm] CreatePublicationRequest command)
+        [Route("CreatePublication")]
+        public async Task<IActionResult> CreatePublication([FromForm] CreatePublicationRequest command)
         {
-            var result = _mediator.Send(command);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         /// <summary>
-        /// Метод скачивания файла
+        /// Метод скачивания публикации.
         /// </summary>
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
-        /// <returns>Возвращает файл</returns>
+        /// <returns>Возвращает файл.</returns>
         [HttpGet]
         [Route("DownloadPublication")]
-        public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
+        public async Task<IActionResult> DownloadPublication(DownloadPublicationResponse command)
         {
             var result = _mediator.Send(command);
-            return File(command.FileContent, command.FileType, command.FileName + "." + command.FileExtension);
+            return File(command.FileContent, command.FileType, $"{command.FileName}.{command.FileExtension}");
         }
 
         /// <summary>
-        /// Метод скачивания файла
+        /// Метод вывода информации о файле.
         /// </summary>
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
-        /// <returns>Возвращает файл</returns>
+        /// <returns>Возвращает информацию о файле.</returns>
         [HttpGet]
-        [Route("GetPublicationById")]
+        [Route("GetPublication")]
         public async Task<IActionResult> GetPublicationById(GetPublicationByIdRequest command)
         {
-            var result = _mediator.Send(command);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         /// <summary>
-        /// Метод вывода информации.
+        /// Метод вывода страницы.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -70,14 +70,32 @@ namespace APS.Web.MVC.Controllers
             return View("UploadPublication");
         }
 
+        /// <summary>
+        /// Метод вывода страницы.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Download()
         {
             return View("DownloadPublication");
         }
 
+        /// <summary>
+        /// Метод вывода страницы.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult GetPublicationById()
+        public IActionResult GetPublication()
+        {
+            return View("GetPublicationById");
+        }
+
+        /// <summary>
+        /// Метод вывода страницы.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult SavePublication()
         {
             return View();
         }
