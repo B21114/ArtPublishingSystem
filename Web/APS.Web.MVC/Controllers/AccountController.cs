@@ -50,7 +50,7 @@ namespace APS.Web.MVC.Controllers
             }
             catch(Exception ex)
             {
-                Console.WriteLine($"Что-то пошло не так!: {ex}");
+                return BadRequest(ex.Message);
             }
             return View("LogIn");
         }
@@ -76,8 +76,7 @@ namespace APS.Web.MVC.Controllers
             }
             catch(InvalidOperationException ex)
             {
-                Console.WriteLine($"{ex.Message}");
-                Redirect("LogIn");
+                return BadRequest(ex.Message);
             }
             return RedirectToAction("Index", "Home");
         }

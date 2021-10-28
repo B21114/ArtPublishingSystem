@@ -9,6 +9,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace APS.UIS.RegistrationUser
 {
@@ -51,10 +52,18 @@ namespace APS.UIS.RegistrationUser
                 Id = Guid.NewGuid(),
                 Person = person,
                 Email = request.Email,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
+         
+            // Метод для создания нового пользователя. 
             await _userManager.CreateAsync(user, request.Password);
 
-            //Возвращает экземпляр класса RegistrationUserResponse с Id новой записи о пользователе.
+            // Метод для добавления объекта Claim. 
+            await _userManager.AddClaimAsync(
+                user, 
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            
+            // Возвращает экземпляр класса RegistrationUserResponse с Id новой записи о пользователе.
             return new RegistrationUserResponse
             {
                 IdUser = user.Id,
