@@ -1,6 +1,8 @@
 ﻿using APS.CMS.Application.Publications.Commands.CreatePublication;
 using APS.CMS.Application.Publications.Commands.DownloadPublication;
+using APS.CMS.Application.Publications.Queries.GetPublicationById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,32 +28,75 @@ namespace APS.Web.MVC.Controllers
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Publications/SavePublication")]
-        public async Task<IActionResult> CreatePublications([FromForm] CreatePublicationRequest command)
+        [Route("CreatePublication")]
+        public async Task<IActionResult> CreatePublication([FromForm] CreatePublicationRequest command)
         {
-            var result = _mediator.Send(command);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         /// <summary>
-        /// Метод скачивания файла
+        /// Метод скачивания публикации.
         /// </summary>
         /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
-        /// <returns>Возвращает файл</returns>
+        /// <returns>Возвращает файл.</returns>
         [HttpGet]
-        [Route("Publications/DownloadPublication")]
-        public async Task<IActionResult> DownloadPublications(DownloadPublicationResponse command)
+        [Route("DownloadPublication")]
+        public async Task<IActionResult> DownloadPublication(DownloadPublicationResponse command)
         {
-            var result = _mediator.Send(command);
-            return File(command.FileContent, command.FileType, command.FileName + "." + command.FileExtension);
+            var result = await _mediator.Send(command);
+            return File(command.FileContent, command.FileType, $"{command.FileName}.{command.FileExtension}");
         }
 
         /// <summary>
-        /// Метод вывода информации.
+        /// Метод вывода информации о файле.
+        /// </summary>
+        /// <param name="command">Передача комманды в сервисный слой MediatR.</param>
+        /// <returns>Возвращает информацию о файле.</returns>
+        [HttpGet]
+        [Route("GetPublication")]
+        public async Task<IActionResult> GetPublicationById(GetPublicationByIdRequest command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Метод вывода страницы.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public IActionResult Upload()
+        {
+            return View("UploadPublication");
+        }
+
+        /// <summary>
+        /// Метод вывода страницы.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Download()
+        {
+            return View("DownloadPublication");
+        }
+
+        /// <summary>
+        /// Метод вывода страницы.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetPublication()
+        {
+            return View("GetPublicationById");
+        }
+
+        /// <summary>
+        /// Метод вывода страницы.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult SavePublication()
         {
             return View();
         }
